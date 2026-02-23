@@ -1,0 +1,13 @@
+# Model files
+/models/*
+# ignore all files except .txt files
+!/models/**/*.txt
+
+# Wheel files
+/wheels/*.whl
+
+# IDE files
+.idea
+
+# Environment variables
+.env

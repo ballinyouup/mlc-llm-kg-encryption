@@ -1,0 +1,15 @@
+[project]
+name = "mlc-llm-kg-encryption"
+version = "0.1.0"
+description = "Knowledge Graph Encryption with MLC LLM"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mlc-llm",
+    "tvm",
+]
+# edit this to point to your wheels
+[tool.uv.sources]
+mlc-llm = { path = "wheels/mlc_llm-0.1.dev0-cp313-cp313-macosx_26_0_arm64.whl" }
+tvm = { path = "wheels/tvm-0.1.dev0-cp313-cp313-macosx_26_0_arm64.whl" }
+
