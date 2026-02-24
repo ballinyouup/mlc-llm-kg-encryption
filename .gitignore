@@ -3,6 +3,9 @@
 # ignore all files except .txt files
 !/models/**/*.txt
 
+# ignore output folders
+/*_outputs
+
 /PGraphRAG/*
 !/PGraphRAG/*.txt
 
@@ -15,4 +18,5 @@
 # Environment variables
 .env
 
+# Database
 *.db
