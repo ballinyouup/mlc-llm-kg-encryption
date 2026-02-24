@@ -5,7 +5,7 @@ from pathlib import Path
 
 from tqdm.asyncio import tqdm_asyncio
 from data_process import load_reviews
-from engine import Engine
+from engine import Engine, ModelChoice
 
 
 def parse_args():
@@ -96,7 +96,7 @@ async def main():
     if not (0 <= args.split_id < args.num_splits):
         raise ValueError("--split-id must be in range [0, num_splits - 1]")
 
-    model_choice = Engine.model_choice[args.model]
+    model_choice = ModelChoice[args.model]
     engine = Engine(device=args.device, model_choice=model_choice)
 
     all_reviews = load_reviews(Path("./PGraphRAG/amazon_train.json"))
