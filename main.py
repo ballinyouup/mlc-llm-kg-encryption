@@ -9,7 +9,7 @@ from extract import process_review, load_reviews
 import argparse
 
 def parse_args(task_choices, model_choices, device_choices):
-    parser = argparse.ArgumentParser(description="Knowledge Graph CLI")
+    parser = argparse.ArgumentParser(description="Knowledge Graph CLI using MLC-LLM")
     parser.add_argument("--task", choices=task_choices)
     parser.add_argument("--model", choices=model_choices)
     parser.add_argument("--device", choices=device_choices)
@@ -19,7 +19,7 @@ def parse_args(task_choices, model_choices, device_choices):
 
 async def main():
     # choices
-    task_choices = ["extract triples", "query"]
+    task_choices = ["extract-triples", "query"]
     model_choices = [model.name for model in ModelChoice]
     device_choices = ["cuda", "metal", "cpu"]
 
