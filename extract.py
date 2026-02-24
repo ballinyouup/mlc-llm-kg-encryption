@@ -47,6 +47,8 @@ async def process_review(local_idx, global_idx, review, total_split_reviews, eng
 
     try:
         parsed_json = json.loads(output)
+        parsed_json["user_id"] = review["user_id"]
+        parsed_json["product_id"] = review["product_id"]
         with open(output_path, "a") as f:
             f.write(json.dumps(parsed_json) + "\n")
     except json.JSONDecodeError:
