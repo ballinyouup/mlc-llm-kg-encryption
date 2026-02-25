@@ -130,7 +130,7 @@ async def extract_triples(args, model_choices):
     print(f"Processing {len(remaining)}/{total_reviews} reviews -> {output_path}")
 
     # Bounded concurrency to avoid overwhelming the engine
-    semaphore = asyncio.Semaphore(16)
+    semaphore = asyncio.Semaphore(4)
     write_lock = asyncio.Lock()
 
     # progress bar and async processing of reviews
