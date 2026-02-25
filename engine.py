@@ -20,7 +20,7 @@ class Engine(AsyncMLCEngine):
         super().__init__(model=Engine.models[model_choice], device=device)
         self.engine_config.mode = "server"
 
-    def send_json_message(self, message, temperature=0.1, max_tokens=1024, frequency_penalty=0.1, presence_penalty=0.1):
+    def send_json_message(self, message, temperature=0.1, max_tokens=2048, frequency_penalty=0.1, presence_penalty=0.1):
         return self.chat.completions.create(
             messages=[{"role": "user", "content": message}],
             stream=False,
