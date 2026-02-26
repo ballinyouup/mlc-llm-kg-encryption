@@ -1,0 +1,3 @@
+[submodule "3rdparty/mlc-cli"]
+	path = 3rdparty/mlc-cli
+	url = https://github.com/ballinyouup/mlc-cli

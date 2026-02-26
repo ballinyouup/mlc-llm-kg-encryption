@@ -5,4 +5,5 @@ class Node:
         self.obj = obj
 
 class Graph:
-    nodes: list[Node] = []
+    def __init__(self):
+        self.nodes: list[Node] = []
