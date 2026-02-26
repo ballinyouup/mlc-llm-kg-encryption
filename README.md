@@ -1,4 +1,4 @@
-# mlc-llm-kg-encryption
+# mlc-graph-cli
 
 CLI for extracting knowledge graph triples from product reviews using local LLM inference (MLC-LLM) and fine-tuning a small model to match larger model quality.
 
