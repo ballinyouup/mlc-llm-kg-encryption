@@ -18,14 +18,14 @@ wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/hote
 wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/hotel_test.json
 
 # Grammar and Online Product Reviews dataset from Kaggle.
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_train.jsonl
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_dev.jsonl
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_test.jsonl
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_train.json
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_dev.json
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/gap_test.json
 
 # B2W-Reviews dataset from github.
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_train.jsonl
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_dev.jsonl
-wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_test.jsonl
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_train.json
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_dev.json
+wget https://github.com/PGraphRAG-benchmark/PGraphRAG/blob/main/data_splits/b2w_test.json
 
 # Download Ministral-3-3B-Instruct-2512 model from Huggingface.
 mkdir -p "$PROJECT_ROOT/models"
