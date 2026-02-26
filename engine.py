@@ -105,15 +105,14 @@ class CloudEngine:
 
         return self.client.chat.completions.create(**kwargs)
 
-extract_system_prompt = """You are an expert knowledge graph extraction system. Your task is to extract entities and relationships from reviews and output them as a strict JSON array of triples.
+extract_system_prompt = """You are an expert multilingual knowledge graph extraction system. Your task is to extract entities and relationships from reviews and output them as a strict JSON array of triples.
 
 Rules:
-1. Extract specific entities (products, features, materials, body parts, users, etc.).
-2. Keep entities short (1 to 3 words) and normalize them (e.g., lowercase, use underscores for spaces like "coconut_oil").
-3. Use ONLY clear, specific predicates.
-4. Do not extract stop words or conversational filler.
-5. Output ONLY valid JSON.
-6. Object must be a string. Do not include additional properties.
+1. Core Entities: Always use the exact word "user" to represent the person writing the review, and the exact word "product" to represent the item, hotel, or service being reviewed.
+2. Entity Normalization: Keep other entities short (1 to 3 words). Format them in lowercase and use underscores for spaces (e.g., "coconut_oil", "front_desk").
+3. Multilingual Unification: If the input is in Portuguese or another language, you MUST translate all extracted entities and predicates into English.
+4. Predicate Standardization: Use clear, consistent predicates. (e.g., "loves", "criticizes", "has_feature", "is_used_for", "experienced_issue", "wants_in"). NOTE: A "product" cannot criticize or love; only a "user" can perform those actions.
+5. Output format: Output ONLY valid JSON. Object must be a string.
 
 Output format:
 {
@@ -124,34 +123,39 @@ Output format:
 
 Examples:
 
-Text: "Love the faux nails and so happy to find glitter nails for toes!"
-Output:
-{
-  "triples": [
-    {"subject": "user", "predicate": "praises", "object": "faux_nails"},
-    {"subject": "faux_nails", "predicate": "has_feature", "object": "glitter"},
-    {"subject": "faux_nails", "predicate": "is_used_for", "object": "toes"}
-  ]
-}
-
 Text: "waste of my money. very thin & too small for my fingernails & toenails"
 Output:
 {
   "triples": [
     {"subject": "product", "predicate": "is", "object": "waste_of_money"},
     {"subject": "product", "predicate": "has_attribute", "object": "very_thin"},
-    {"subject": "product", "predicate": "criticizes", "object": "too_small"},
-    {"subject": "product", "predicate": "is_used_for", "object": "fingernails"}
+    {"subject": "user", "predicate": "criticizes", "object": "too_small"},
+    {"subject": "product", "predicate": "is_used_for", "object": "fingernails"},
+    {"subject": "product", "predicate": "is_used_for", "object": "toenails"}
   ]
 }
 
-Text: "Loved the scent but want this product in a perfume too!"
+Text: "We stayed here for a friends wedding and fell in Love. The hotel is right on one of the main pedestrian roads and within minutes of all the glory that Vail has to offer. The room was cute, super fluffy and comfortable bed. Tiny windows which made the room a bit dark, but not a big deal."
 Output:
 {
   "triples": [
-    {"subject": "user", "predicate": "praises", "object": "scent"},
-    {"subject": "product", "predicate": "has_attribute", "object": "scent"},
-    {"subject": "user", "predicate": "wants", "object": "perfume"}
+    {"subject": "user", "predicate": "stayed_for", "object": "wedding"},
+    {"subject": "product", "predicate": "located_on", "object": "pedestrian_road"},
+    {"subject": "product", "predicate": "located_near", "object": "vail"},
+    {"subject": "product", "predicate": "has_feature", "object": "cute_room"},
+    {"subject": "product", "predicate": "has_feature", "object": "comfortable_bed"},
+    {"subject": "product", "predicate": "has_attribute", "object": "tiny_windows"}
+  ]
+}
+
+Text: "Chegou antes do prazo, ótima qualidade, fácil montagem e super pratico de usar!"
+Output:
+{
+  "triples": [
+    {"subject": "user", "predicate": "loves", "object": "fast_delivery"},
+    {"subject": "product", "predicate": "has_attribute", "object": "high_quality"},
+    {"subject": "product", "predicate": "has_attribute", "object": "easy_assembly"},
+    {"subject": "product", "predicate": "has_attribute", "object": "practical_to_use"}
   ]
 }
 """
