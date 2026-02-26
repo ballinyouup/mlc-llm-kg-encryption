@@ -6,7 +6,7 @@ from questionary import select, text
 from tqdm.asyncio import tqdm_asyncio
 
 
-async def run_extraction(args, send_fn, default_concurrency=4, default_output_suffix="_output.jsonl", cleanup_fn=None):
+async def run_extraction(args, send_fn, default_concurrency=16, default_output_suffix="_output.jsonl", cleanup_fn=None):
     if args.extract_file:
         extract_file = args.extract_file
     else:
