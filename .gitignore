@@ -20,3 +20,7 @@
 
 # Database
 *.db
+
+# Training data
+/train
+!/train/*.txt

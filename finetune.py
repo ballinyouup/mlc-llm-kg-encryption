@@ -1,4 +1,5 @@
 import torch
+from pathlib import Path
 from questionary import select
 from datasets import load_dataset
 from transformers import AutoTokenizer, PreTrainedModel
@@ -34,7 +35,14 @@ TRAIN_CONFIGS = {
 
 async def finetune(args):
     model_id = args.model_path or "models/Ministral-3-3B-Instruct-2512"
-    dataset_path = args.dataset or "PGraphRAG/train_data.jsonl"
+
+    train_dir = Path("./train")
+    if args.dataset:
+        dataset_path = args.dataset
+    else:
+        files = [f.name for f in train_dir.glob("*.jsonl")]
+        chosen = await select("Select training dataset", choices=files).ask_async()
+        dataset_path = str(train_dir / chosen)
     output_dir = args.output_path or "ministral-3b-pgraphrag-fft"
     final_dir = f"{output_dir}-final"
 
